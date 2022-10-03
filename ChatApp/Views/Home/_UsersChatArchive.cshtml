@@ -1,0 +1,26 @@
+﻿<ul class="list-unstyled contacts success">
+    @foreach (var item in @ViewBag.Archive)
+    {
+        <li data-toggle="tab" id="OpenChat" data-target="@item.Id">
+            @if (@item.ChatCount > 0)
+            {
+                <div class="message-count"> @item.ChatCount </div>
+            }
+            <img alt="" class="img-circle medium-image" src="@item.Image">
+
+            <div class="vcentered info-combo">
+                <h3 class="no-margin-bottom name"> @item.UserName </h3>
+                <h5> @item.LastMessage </h5>
+            </div>
+            <div class="contacts-add">
+                @{
+                    DateTime dt = (new DateTime(1970, 1, 1)).AddMilliseconds(double.Parse(item.Date.ToString()));
+                    var ds = dt.ToString("dd HH mm");
+                }
+                <span class="message-time"> @ds </span>
+                <i class="fa fa-thin fa-ban" data-target="@item.Id" id="addBlockArchive" style="position: absolute;font-size: 14px;right: 12px;bottom: 15px;color: #ed9696;cursor: pointer;"></i>
+                <i class="fa fa-paperclip" data-target="@item.Id" id="removeArchive"></i>
+            </div>
+        </li>
+    }
+</ul>

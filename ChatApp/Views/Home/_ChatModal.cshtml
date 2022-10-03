@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ChatApp.Models.Dtos.MessageDto>
+
+@foreach (var item in Model)
+{
+
+    @if (item.IsMyMessage == true)
+    {
+        <input value="@item.ChatId" id="ChatIds" hidden />
+        <input value="@item.Image" id="ImageSrc" hidden />
+        <input value="@item.Name" id="userName" hidden />
+
+        <div class="message my-message">
+            <img alt="" class="img-circle medium-image" src="@item.Image">
+
+            <div class="message-body">
+                <div class="message-body-inner">
+                    <div class="message-info">
+                        <h4> @item.Name </h4>
+                        <h5> <i class="fa fa-clock-o"></i> @item.Time </h5>
+                    </div>
+                    <hr>
+                    <div class="message-text">
+                        @item.Text
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    }
+    else
+    {
+        @if (item.IsRead == false)
+        {
+            <input value="@item.ChatId" id="ChatIds" hidden />
+        <input value="@item.ToId" id="ToId" hidden />
+
+            <div class="message info" id="focusMsg" data-target="@item.Id">
+                <img alt="" class="img-circle medium-image" src="@item.Image">
+
+                <div class="message-body">
+                    <div class="message-info">
+                        <h4> @item.Name </h4>
+                        <h5> <i class="fa fa-clock-o"></i> @item.Time </h5>
+                    </div>
+                    <hr>
+                    <div class="message-text">
+                        @item.Text
+                    </div>
+                </div>
+                <br>
+            </div>
+        }
+        else
+        {
+            <input value="@item.ChatId" id="ChatIds" hidden />
+        <input value="@item.ToId" id="ToId" hidden />
+
+            <div class="message info">
+                <img alt="" class="img-circle medium-image" src="@item.Image">
+
+                <div class="message-body">
+                    <div class="message-info">
+                        <h4> @item.Name </h4>
+                        <h5> <i class="fa fa-clock-o"></i> @item.Time </h5>
+                    </div>
+                    <hr>
+                    <div class="message-text">
+                        @item.Text
+                    </div>
+                </div>
+                <br>
+            </div>
+        }
+    }
+}
+
+
